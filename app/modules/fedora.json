@@ -1,0 +1,21 @@
+{
+  "config": {
+    "servers": [
+      { "id": "toolbox-p01.dbc.dk/proxy/rausu/fedora", "name": "rausu" },
+      { "id": "toolbox-p01.dbc.dk/proxy/andrus4/fedora", "name": "andrus 4" },
+      { "id": "toolbox-p01.dbc.dk/proxy/andrus5/fedora", "name": "andrus 5" },
+      { "id": "toolbox-p01.dbc.dk/proxy/dotsero/fedora", "name": "dotsero" },
+      { "id": "toolbox-p01.dbc.dk/proxy/douglas/fedora", "name": "douglas" },
+      { "id": "toolbox-p01.dbc.dk/proxy/wellness-p01/fedora", "name": "wellness-p01" }
+    ]
+  },
+  "scripts": {
+    "modules/fedora_query.js": [
+    "danmark",
+    "paradis",
+    "harry potter",
+    "camilla läckberg",
+    "frankenweenie"
+    ]
+  }
+}

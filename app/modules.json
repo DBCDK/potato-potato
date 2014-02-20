@@ -1,0 +1,5 @@
+[
+  {"name": "Solr", "id": "solr"},
+  {"name": "Fedora", "id": "fedora"},
+  {"name": "Open Search", "id": "opensearch"}
+]

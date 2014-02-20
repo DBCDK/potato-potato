@@ -1,0 +1,23 @@
+{
+  "config": {
+    "servers": [
+      { "id": "toolbox-p01.dbc.dk/proxy/rausu/solr", "name": "rausu" },
+      { "id": "toolbox-p01.dbc.dk/proxy/andrus4/solr", "name": "andrus 4" },
+      { "id": "toolbox-p01.dbc.dk/proxy/andrus5/solr", "name": "andrus 5" },
+      { "id": "toolbox-p01.dbc.dk/proxy/solar-p01/solr", "name": "solar-p01" },
+      { "id": "toolbox-p01.dbc.dk/proxy/solar-p02/solr", "name": "solar-p02" },
+      { "id": "toolbox-p01.dbc.dk/proxy/wellness-p02/solr", "name": "wellness-p02" },
+      { "id": "toolbox-p01.dbc.dk/proxy/wellness-p03/solr", "name": "wellness-p03" }
+    ],
+    "sectionOrder": {"queries": 100, "metadata": 90}
+  },
+  "scripts": {
+    "modules/solr_query.js": [
+    "danmark",
+    "harry potter",
+    "camilla läckberg",
+    "frankenweenie"
+    ],
+    "modules/solr_luke.js": null
+  }
+}

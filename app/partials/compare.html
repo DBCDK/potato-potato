@@ -1,0 +1,64 @@
+<div class="loading" ng-show="!loaded">loading..</div>
+
+<div class="app" ng-show="loaded">
+  <nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#/">Potato Potato</a>
+      </div>
+      <form class="navbar-form form-inline navbar-right">
+        <div class="form-group">
+          <input type="text" class="form-control input-sm" placeholder="Server address" ng-model="newServer">
+          <button class="btn btn-default btn-sm" type="button" ng-click="addServer(newServer)" ng-disabled="!newServer">add</button>
+        </div>
+        <div class="form-group">
+          <select class="form-control input-sm" ng-model="newServerSelect" ng-options="server.name for server in module.config.servers"></select>
+          <button class="btn btn-default btn-sm" type="button" ng-click="addServer(newServerSelect.id)" ng-disabled="!newServerSelect">add</button>
+        </div>
+        <div class="form-group">
+          <select class="form-control input-sm" ng-model="reference" ng-options="server.id for server in servers" ng-disabled="servers.length < 2">
+            <option value="">Compare with..</option>
+          </select>
+          <button class="btn btn-default btn-sm" ng-class="{active: onlyDiffs}" ng-click="toggleDiffs()">only diffs</button>
+          <button class="btn btn-default btn-sm" ng-class="{active: highlight}" ng-click="toggleHighlight()">highlight</button>
+        </div>
+      </form>
+    </div>
+  </nav>
+
+  <table class="table table-condensed" ng-show="servers.length > 0">
+    <thead ng-repeat-start="section in sections | objectToArray | orderBy:getSectionRank:true">
+      <tr>
+        <th>
+          <button class="btn btn-xs btn-success" ng-show="section.type === 'query'" ng-click="sections[section.id].fields.push('')">+</button>
+        </th>
+        <th>
+          {{section.id}}
+        </th>
+        <th ng-repeat="server in servers" ng-class="{reference: reference.id === server.id}">
+          <span ng-click="setReference(server)">{{server.id}}</span>
+          <button class="btn btn-xs btn-default" ng-click="removeServer($index)">&times;</button>
+        </th>
+      </tr>
+    </thead>
+    <tbody ng-repeat-end>
+      <tr ng-repeat="field in section.fields track by $index">
+        <td>
+          <button class="btn btn-xs btn-danger" ng-click="removeQuery(section.id, $index)" ng-show="section.type === 'query'">&times;</button>
+        </td>
+        <td>
+          <input ng-model="section.fields[$index]" ng-change="updateScriptQuery(section.script, section.fields[$index], $index)" ng-show="section.type === 'query'">
+          <span ng-show="section.type !== 'query'">{{field}}</span>
+        </td>
+        <td ng-repeat="server in servers" ng-class="{reference: server.id === reference.id, equal: (highlight && !!reference && server.sections[section.id][field] === reference.sections[section.id][field] && server.id !== reference.id), different: (highlight && !!reference && server.sections[section.id][field] !== reference.sections[section.id][field] && server.id !== reference.id)}">
+          <span ng-show="reference != undefined && reference.id !== server.id">
+            {{compare(server.sections[section.id][field], reference.sections[section.id][field])}}
+          </span>
+          <span ng-show="reference == undefined || reference.id === server.id">
+            {{server.sections[section.id][field]}}
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

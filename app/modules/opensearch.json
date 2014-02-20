@@ -1,0 +1,19 @@
+{
+  "config": {
+    "servers": [
+      { "id": "toolbox-p01.dbc.dk/proxy/lakiseks/opensearch/test/", "name": "lakiseks/test" },
+      { "id": "toolbox-p01.dbc.dk/proxy/lakiseks/opensearch/nytest/", "name": "lakiseks/nytest" }
+    ],
+    "sectionOrder": {"queries": 100}
+  },
+  "scripts": {
+    "modules/opensearch_query.js": [
+    "danmark",
+    "paradis",
+    "harry potter",
+    "camilla läckberg",
+    "frankenweenie"
+    ],
+    "modules/opensearch_showinfo.js": null
+  }
+}
