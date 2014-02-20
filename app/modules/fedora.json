@@ -1,0 +1,15 @@
+{
+  "config": {
+    "servers": [
+      { "id": "a-server/fedora", "name": "a server" },
+      { "id": "another-server/fedora", "name": "another server" }
+    ]
+  },
+  "scripts": {
+    "modules/fedora_query.js": [
+    "pandas",
+    "elephants",
+    "girafs"
+    ]
+  }
+}

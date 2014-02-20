@@ -1,0 +1,45 @@
+body {
+}
+
+table {
+    padding: 0 0.5em;
+    border-spacing: 0.25em 0;
+    border-collapse: separate;
+    width: auto !important;
+}
+
+td:first-child {
+    width: 2em;
+}
+
+td {
+    max-width: 25em;
+    word-wrap: break-word;
+}
+
+.navbar-form select {
+    margin-left: 2em;
+}
+
+.equal {
+}
+
+.different {
+    background-color: #ff8;
+}
+
+.reference {
+    padding-left: 0.75em !important;
+    padding-right: 0.75em !important;
+    background-color: #f9f9f9;
+}
+
+th.reference {
+    background: linear-gradient(to bottom, #f3f3f3, #f9f9f9);
+}
+
+thead:first-child .reference {
+    padding-top: 0.5em !important;
+    border-radius: 0.5em 0.5em 0 0;
+    background: linear-gradient(to bottom, #f0f0f0, #f9f9f9);
+}
