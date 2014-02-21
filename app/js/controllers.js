@@ -25,10 +25,6 @@ angular.module('myApp.controllers', [])
     return true;
   }
 
-  /*
-   * new
-   */
-
   $scope.toJson = function(object) {
     return JSON.stringify(object, null, 2);
   }
@@ -37,6 +33,8 @@ angular.module('myApp.controllers', [])
   $scope.sections = {};
   $scope.onlyDiffs = true;
   $scope.highlight = true;
+  var pendingQueries = {};
+  var queryDelay = 500; // [ms]
 
   var addSection = function(sectionId, opts) {
     opts = opts || {};
@@ -63,50 +61,6 @@ angular.module('myApp.controllers', [])
     });
   }
 
-
-  $scope.solrQuery = function(solr, query, callback) {
-    callback = callback || function(result) {
-        solr.queries[query] = result['data']['response']['numFound'];
-    };
-
-    if (query != null && query.length > 0) {
-      console.log("quering " + solr.id + " for " + query);
-      $http.get($scope.queryUrl(solr.id), {params: {wt: 'json', defType: 'edismax', q: query}}).then(callback);
-    }
-  }
-
-  $scope.queryServer = function(solr, query, callback) {
-    if (query != null && query.length > 0) {
-
-    }
-  }
-
-  var pendingQueriesNew = {};
-  var queryDelay = 500; // [ms]
-  $scope.updateServerQuery = function(query, id) { // TODO
-    var runnable = function() {
-      if (query != null && query.length > 0) {
-        $scope.solrs.forEach(function(solr) {
-          $scope.solrQuery(solr, query);
-        });
-      }
-    };
-
-    if (id != null) {
-      pendingQueries[id] = query;
-      $timeout(function() {
-        if (query === pendingQueries[id]) {
-          console.log("delayed query");
-          runnable();
-          delete pendingQueries[id];
-        }
-      }, queryDelay);
-    } else {
-      console.log("instant query");
-      runnable();
-    }
-  };
-
   var callScript = function(probe, server) {
     console.log("Calling " + probe.origin);
     probe.fn(server.id, function(sectionId, data) {
@@ -127,8 +81,6 @@ angular.module('myApp.controllers', [])
     });
   };
 
-  var pendingQueries = {};
-  var queryDelay = 500; // [ms]
   $scope.updateScriptQuery = function(script, query, id) {
     id = script + "-" + id;
     var probe = $scope.module.probes[script];
