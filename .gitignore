@@ -1,4 +1,5 @@
-logs/*
+logs
+config
 !.gitkeep
 node_modules/
 tmp
