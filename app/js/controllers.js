@@ -205,11 +205,11 @@ angular.module('myApp.controllers', [])
     }
   }
 
-  var loadModule = function(moduleId) {
-    console.log("Loading module width id=" + moduleId);
+  var loadModule = function(moduleLocation) {
+    console.log("Loading module width id=" + moduleLocation);
 
-    $http.get('modules/' + moduleId + '.json').then(function (request) {
-      $scope.module = {id: moduleId, config: request.data.config, probes: {}};
+    $http.get('config/modules/' + moduleLocation).then(function (request) {
+      $scope.module = {id: moduleLocation, config: request.data.config, probes: {}};
 
       var scripts = request.data.scripts || {};
 
@@ -222,7 +222,7 @@ angular.module('myApp.controllers', [])
         if (_.isArray(scripts[script])) {
           probe['queries'] = scripts[script];
         }
-        $http.get(script).then(function (scriptRequest) {
+        $http.get('modules/' + script).then(function (scriptRequest) {
           probe['fn'] = eval(scriptRequest.data);
           probe['script'] = script;
           $scope.module.probes[script] = probe;
@@ -236,7 +236,7 @@ angular.module('myApp.controllers', [])
   loadModule($routeParams.module);
 }])
 .controller('ModuleListCtrl', ['$scope', '$http', function($scope, $http) {
-  $http.get('modules.json').then(function(request) {
+  $http.get('config/config.json').then(function(request) {
     $scope.modules = request.data;
     console.log(JSON.stringify(request.data, null, 2));
   });

@@ -11,6 +11,6 @@ angular.module('myApp', [
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/', {templateUrl: 'partials/modules.html', controller: 'ModuleListCtrl'});
-  $routeProvider.when('/:module', {templateUrl: 'partials/compare.html', controller: 'CompareCtrl'});
+  $routeProvider.when('/:module*', {templateUrl: 'partials/compare.html', controller: 'CompareCtrl'});
   $routeProvider.otherwise({redirectTo: '/'});
 }]);

@@ -1,0 +1,4 @@
+[
+  {"name": "Solr", "id": "solr", "location": "solr.json"},
+  {"name": "Fedora", "id": "fedora", "location": "fedora.json"}
+]

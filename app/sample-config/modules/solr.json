@@ -7,11 +7,11 @@
     "sectionOrder": {"queries": 100, "metadata": 90}
   },
   "scripts": {
-    "modules/solr_query.js": [
+    "solr/solr_query.js": [
     "pandas",
     "elephants",
     "girafs"
     ],
-    "modules/solr_luke.js": null
+    "solr/solr_luke.js": null
   }
 }
