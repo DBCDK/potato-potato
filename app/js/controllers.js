@@ -125,9 +125,7 @@ angular.module('myApp.controllers', [])
           break;
         case 3:
           probe.queries.forEach(function(query) {
-            probe.queries.forEach(function(query) {
-              callScriptQuery(probe, server, query);
-            });
+            callScriptQuery(probe, server, query);
           });
           break;
         default: console.log("Unknown function arity found in " + probe.origin);
